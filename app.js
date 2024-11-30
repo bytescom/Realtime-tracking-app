@@ -1,32 +1,41 @@
+const { log } = require('console');
 const express = require('express');
 const app = express();
-const path = require('path');
-const PORT = 3000;
 const http = require("http");
+const path = require("path");
 
-const socketio = require("socket.io");
+const socketio = require("socket.io")
 const server = http.createServer(app);
 const io = socketio(server);
 
-// Set the view engine to EJS
 app.set('view engine', 'ejs');
+app.use(express.static(path.join(__dirname, "public")));
 
-// Set the folder for static files (CSS, JS, images)
-app.use(express.static(path.join(__dirname, 'public')));
+// io.on("connection", (socket) => {
+//     socket.on("send-location", (data)=>{
+//         io.emit("receive-location", {id: socket.id, ...data})
+//     })
+//     console.log("connected");
+// });
 
-io.on("connection", (socket)=>{
-    socket.on("sen-location" , (data)=> {
-        io.emit("receive-location", {id: socket.id, ...data})
-    })
-    console.log("connected");
-    
-})
+io.on("connection", (socket) => {
+    console.log("User connected:", socket.id);
 
-// Define a route to render index.ejs
+    socket.on("send-location", (data) => {
+        console.log("Received location:", data);
+        socket.broadcast.emit("receive-location", {
+            id: socket.id,
+            ...data,
+        });
+    });
+
+    socket.on("disconnect", () => {
+        console.log("User disconnected:", socket.id);
+    });
+});
+
 app.get('/', (req, res) => {
     res.render('index');
 });
 
-// Start the server
-
-server.listen(PORT);
+server.listen(3000, () => console.log('Example app listening on port 3000!'));
