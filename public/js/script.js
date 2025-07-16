@@ -20,7 +20,7 @@ if (navigator.geolocation) {
 }
 
 
-const map = L.map('map').setView([0, 0], 10);
+const map = L.map('map').setView([0, 0], 16);
 
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -28,10 +28,6 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 const markers = {};
 
-const playSound = () => {
-    const audio = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmQdBjiS2vHNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmQdBjiS2vHNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmQdBjiS2vHNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmQdBjiS2vHNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmQdBjiS2vHNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmQdBjiS2vHNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmQdBjiS2vHNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmQdBjiS2vHNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmQdBjiS2vHNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmQdBjiS2vHNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmQdBjiS2vHNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmQdBjiS2vHNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmQdBjiS2vHNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmQdBjiS2vHNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmQdBjiS2vHNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmQdBjiS2vHNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmQdBjiS2vHNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmQdBjiS2vHNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmQdBjiS2vHNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmQdBjiS2vHNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmQdBjiS2vHNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmQdBjiS2vHNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmQdBjiS2vHNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmQdBjiS2vHNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmQdBjiS2vHNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmQdBjiS2vHNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmQdBjiS2vHNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmQdBjiS2vHNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmQdBjiS2vHNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmQdBjiS2vHNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmQdBjiS2vHNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmQdBjiS2vHNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmQdBjiS2vHNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmQdBjiS2vHNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmQdBjiS2vHNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmQdBjiS2vHNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmQdBjiS2vHNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmQdBjiS2vHNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmQdBjiS2vHNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmQdBjiS2vHNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmQdBjiS2vHNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmQdBjiS2vHNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmQdBjiS2vHNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmQdBjiS2vHNeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmQdBjiS2vHNeSsF');
-    audio.play();
-};
 
 socket.on("receive-location", (data)=>{
     const {id, latitude, longitude} = data;
@@ -43,7 +39,6 @@ socket.on("receive-location", (data)=>{
         markers[id] = L.marker([latitude, longitude]).addTo(map);
     }
 
-    playSound(); 
  })
 
  socket.on("user-disconnected", (id) => {
@@ -54,11 +49,3 @@ socket.on("receive-location", (data)=>{
 });
 
 console.log("JS is connected!");
-
-// Add to script.js
-
-
-
-socket.on("receive-location", (data) => {
-    
-});

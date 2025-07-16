@@ -32,20 +32,3 @@ app.get('/', (req, res) => {
 server.listen(3000, () =>
     console.log('Example app listening on port 3000!')
 );
-
-
-// io.on("connection", (socket) => {
-//     console.log("User connected:", socket.id);
-
-//     socket.on("send-location", (data) => {
-//         console.log("Received location:", data);
-//         socket.broadcast.emit("receive-location", {
-//             id: socket.id,
-//             ...data,
-//         });
-//     });
-
-//     socket.on("disconnect", () => {
-//         console.log("User disconnected:", socket.id);
-//     });
-// });
